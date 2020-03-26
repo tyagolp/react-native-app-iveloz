@@ -139,7 +139,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.trend.iveloz"
+        applicationId "com.iveloz"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -165,6 +165,13 @@ android {
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
+
+            buildConfigField "String", "CodePushDeploymentKey", '""'
+        }
+        releaseStaging  {
+            buildConfigField "String", "CodePushDeploymentKey", '"rI9XvvwTvwyB5g_0HpohfeSMKGH8LXU6RnP1U"'
+
+            matchingFallbacks = ['debug', 'release']
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
@@ -172,6 +179,8 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+
+            buildConfigField "String", "CodePushDeploymentKey", '"qguxU3TSlei1Y29RK6tnkKRGJL-bDZCh33l6r"'
         }
     }
     // applicationVariants are e.g. debug, release
@@ -191,6 +200,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-code-push')
     implementation project(':react-native-onesignal')
     implementation project(':react-native-vector-icons')
     implementation fileTree(dir: "libs", include: ["*.jar"])
