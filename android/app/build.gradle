@@ -163,7 +163,7 @@ android {
         }
     }
     buildTypes {
-        debug {-
+        debug {
             signingConfig signingConfigs.debug
 
             buildConfigField "String", "CodePushDeploymentKey", '""'
