@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
@@ -16,7 +14,6 @@ import {
 import { TextInputMask } from 'react-native-masked-text';
 
 import * as LoginActions from '../../store/modules/login/actions';
-// import { requestLocationPermission } from '../../services/Permissions';
 
 import Background from '../../components/Background';
 import styles from './styles';
@@ -26,20 +23,11 @@ import { colors } from '../../styles';
 class SignIn extends Component {
   constructor(props) {
     super(props);
-    /* this.propTypes = {
-      navigation: PropTypes.shape({
-        navigate: PropTypes.func,
-      }).isRequired,
-    }; */
     this.state = {
-      cpf: '391.485.758-79',
-      password: '123456',
+      cpf: '',
+      password: '',
     };
   }
-
-  /* async componentWillMount() {
-    await requestLocationPermission();
-  } */
 
   signIn = async () => {
     const { cpf, password } = this.state;
@@ -67,7 +55,7 @@ class SignIn extends Component {
               <Image source={logo} style={styles.logo} />
             </View>
 
-            <Text style={styles.label}>CPF</Text>
+            <Text style={styles.label}>CPF11</Text>
             <TextInputMask
               type="cpf"
               value={cpf}
@@ -104,10 +92,6 @@ class SignIn extends Component {
               ) : null}
               <Text style={styles.buttonText}>Entrar</Text>
             </TouchableOpacity>
-
-            {/* <TouchableOpacity onPress={this.Register} style={styles.button}>
-              <Text style={styles.buttonText}>Registrar-se</Text>
-              </TouchableOpacity> */}
 
             {error ? (
               <Text style={styles.label}>Usuario não encontrado!</Text>
