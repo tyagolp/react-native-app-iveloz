@@ -55,7 +55,7 @@ class SignIn extends Component {
               <Image source={logo} style={styles.logo} />
             </View>
 
-            <Text style={styles.label}>CPF11</Text>
+            <Text style={styles.label}>CPF</Text>
             <TextInputMask
               type="cpf"
               value={cpf}
