@@ -35,10 +35,10 @@ class SignIn extends Component {
     getLoginRequest({ cpf, password });
   };
 
-  Register = async () => {
+  /*Register = async () => {
     const { navigation } = this.props;
     navigation.navigate('Register');
-  };
+  };*/
 
   render() {
     const { cpf, password } = this.state;
@@ -83,7 +83,7 @@ class SignIn extends Component {
               ref={el => {
                 this.passwordInput = el;
               }}
-              onSubmitEditing={() => this.signIn}
+              onSubmitEditing={this.signIn}
             />
 
             <TouchableOpacity onPress={this.signIn} style={styles.button}>
