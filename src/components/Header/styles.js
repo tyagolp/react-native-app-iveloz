@@ -1,6 +1,6 @@
-import { StyleSheet } from 'react-native';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { colors, metrics } from '../../styles';
+import {StyleSheet} from 'react-native';
+import {getStatusBarHeight} from 'react-native-status-bar-height';
+import {colors, metrics} from '../../styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
   },
 
   containerItems: {
-    // backgroundColor: colors.primaryTransparent,
     height: 54 + getStatusBarHeight(),
     paddingTop: getStatusBarHeight() / 2,
     flexDirection: 'row',

@@ -42,7 +42,7 @@ class Header extends Component {
           <TouchableOpacity onPress={this.handleMenu}>
             <Icon
               name="navicon"
-              size={16}
+              size={18}
               style={dark ? styles.iconDark : styles.icon}
             />
           </TouchableOpacity>
@@ -52,7 +52,7 @@ class Header extends Component {
           <TouchableOpacity onPress={this.signOut}>
             <Icon
               name="power-off"
-              size={16}
+              size={18}
               style={dark ? styles.iconDark : styles.icon}
             />
           </TouchableOpacity>
