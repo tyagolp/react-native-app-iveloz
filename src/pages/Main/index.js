@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 // import Icon from 'react-native-vector-icons/FontAwesome';
-import { Text } from 'react-native-svg';
+import {Text} from 'react-native-svg';
 import dateFormat from 'dateformat';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 import Backgroud from '../../components/Background';
 
 import * as ActionAdesao from '../../store/modules/adesao/actions';
@@ -32,22 +32,16 @@ import {
   LegendItemText,
   LegendItemIcon,
 } from './styles';
-import { general, colors } from '../../styles';
+import {general, colors} from '../../styles';
 
-const Main = ({
-  navigation,
-  user,
-  adesao,
-  totalAdesao,
-  getChartDataRequest,
-}) => {
-  useEffect(() => {
+const Main = ({navigation, user, adesao, totalAdesao, getChartDataRequest}) => {
+  /* useEffect(() => {
     async function load() {
-      const { month, year, chartPendent } = adesao;
-      if (chartPendent === true) getChartDataRequest({ month, year });
+      const {month, year, chartPendent} = adesao;
+      if (chartPendent === true) getChartDataRequest({month, year});
     }
     load();
-  }, [adesao, getChartDataRequest]);
+  }, [adesao, getChartDataRequest]); */
 
   function handleNavigation(local) {
     navigation.navigate(local);
@@ -61,9 +55,9 @@ const Main = ({
     else navigation.navigate('RelatorioAdesao');
   }
 
-  const Labels = ({ slices, height, width }) => {
+  const Labels = ({slices, height, width}) => {
     return slices.map((slice, index) => {
-      const { labelCentroid, pieCentroid, data } = slice;
+      const {labelCentroid, pieCentroid, data} = slice;
       return (
         <Text
           key={index}
@@ -74,15 +68,14 @@ const Main = ({
           alignmentBaseline="middle"
           fontSize={24}
           stroke="black"
-          strokeWidth={0.2}
-        >
+          strokeWidth={0.2}>
           {data.label}
         </Text>
       );
     });
   };
 
-  const pieData = adesao.dataChart.map(item => ({
+  const pieData = adesao.dataChart.map((item) => ({
     value: item.value,
     label: item.value,
     svg: {
@@ -104,22 +97,19 @@ const Main = ({
             <CardHeaderButtons>
               <HomeCardItem
                 onPress={() => handleNavigation('Adesao')}
-                style={[general.formStyles.sombra]}
-              >
+                style={[general.formStyles.sombra]}>
                 <HomeCardItemIcon name="plus-circle" />
                 <HomeCardItemText>Nova Adesão</HomeCardItemText>
               </HomeCardItem>
               <HomeCardItem
                 onPress={() => handleNavigation('RelatorioAdesao')}
-                style={[general.formStyles.sombra]}
-              >
+                style={[general.formStyles.sombra]}>
                 <HomeCardItemIcon name="table" />
                 <HomeCardItemText>Relatório</HomeCardItemText>
               </HomeCardItem>
               <HomeCardItem
                 onPress={() => handleNavigation('Profile')}
-                style={[general.formStyles.sombra]}
-              >
+                style={[general.formStyles.sombra]}>
                 <HomeCardItemIcon name="user" />
                 <HomeCardItemText>Perfil</HomeCardItemText>
               </HomeCardItem>
@@ -143,17 +133,15 @@ const Main = ({
                         <LegendItem
                           key="all"
                           color={colors.primary}
-                          onPress={() => handleChartLabel(null)}
-                        >
+                          onPress={() => handleChartLabel(null)}>
                           <LegendItemIcon name="circle" />
                           <LegendItemText>Total - {totalAdesao}</LegendItemText>
                         </LegendItem>
-                        {adesao.dataChart.map(item => (
+                        {adesao.dataChart.map((item) => (
                           <LegendItem
                             key={item.key}
                             color={item.color}
-                            onPress={() => handleChartLabel(item)}
-                          >
+                            onPress={() => handleChartLabel(item)}>
                             {
                               {
                                 1: <LegendItemIcon name="clock-o" />,
@@ -185,16 +173,16 @@ const Main = ({
 
 // import { Container } from './styles';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   user: state.user.item,
   adesao: state.adesao,
   totalAdesao: Object.values(state.adesao.dataChart).reduce(
-    (r, { value }) => r + value,
-    0
+    (r, {value}) => r + value,
+    0,
   ),
 });
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators(ActionAdesao, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

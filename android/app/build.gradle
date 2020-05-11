@@ -105,6 +105,8 @@ def enableSeparateBuildPerCPUArchitecture = false
 
 /**
  * Run Proguard to shrink the Java bytecode in release builds.
+ * enableProguardInReleaseBuilds como true possa ser que cause o mau
+      funcionamento de alguma funcionalidade
  */
 def enableProguardInReleaseBuilds = false
 
@@ -174,13 +176,8 @@ android {
             matchingFallbacks = ['debug', 'release']
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://facebook.github.io/react-native/docs/signed-apk-android.
-            //signingConfig signingConfigs.debug
-            shrinkResources true
-            minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-
+            //minifyEnabled enableProguardInReleaseBuilds
+            //proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             buildConfigField "String", "CodePushDeploymentKey", '"qguxU3TSlei1Y29RK6tnkKRGJL-bDZCh33l6r"'
         }
     }

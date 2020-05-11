@@ -14,7 +14,6 @@ class App extends Component {
 
   render() {
     const { login } = this.props;
-
     if (!login.authChecked) return <Background />;
 
     const Router = createRouter(login.signed);

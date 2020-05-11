@@ -9,7 +9,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Image,
-  ActivityIndicator,
+  ActivityIndicator
 } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
 
@@ -33,6 +33,12 @@ class SignIn extends Component {
     const { cpf, password } = this.state;
     const { getLoginRequest } = this.props;
     getLoginRequest({ cpf, password });
+  };
+
+  signInTest = async () => {
+    const { cpf, password } = this.state;
+    const { getLoginTestRequest } = this.props;
+    getLoginTestRequest({ cpf, password });
   };
 
   /*Register = async () => {
@@ -91,6 +97,13 @@ class SignIn extends Component {
                 <ActivityIndicator color={colors.primary} size={18} />
               ) : null}
               <Text style={styles.buttonText}>Entrar</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={this.signInTest} style={styles.button}>
+              {loading ? (
+                <ActivityIndicator color={colors.primary} size={18} />
+              ) : null}
+              <Text style={styles.buttonText}>Test Login</Text>
             </TouchableOpacity>
 
             {error ? (
