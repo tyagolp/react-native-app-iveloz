@@ -103,7 +103,7 @@ class SignIn extends Component {
               {loading ? (
                 <ActivityIndicator color={colors.primary} size={18} />
               ) : null}
-              <Text style={styles.buttonText}>Test Login</Text>
+              <Text style={styles.buttonText}>Sem internet</Text>
             </TouchableOpacity>
 
             {error ? (
