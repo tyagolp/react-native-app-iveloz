@@ -177,7 +177,7 @@ android {
         }
         release {
             //minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            //proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             buildConfigField "String", "CodePushDeploymentKey", '"qguxU3TSlei1Y29RK6tnkKRGJL-bDZCh33l6r"'
         }
     }
