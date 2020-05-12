@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import api from 'axios'
 import {
   View,
   Text,
@@ -26,6 +27,7 @@ class SignIn extends Component {
     this.state = {
       cpf: '',
       password: '',
+      message:''
     };
   }
 
@@ -36,9 +38,18 @@ class SignIn extends Component {
   };
 
   signInTest = async () => {
+try {
+
     const { cpf, password } = this.state;
-    const { getLoginTestRequest } = this.props;
-    getLoginTestRequest({ cpf, password });
+    const result = await api.get(`https://api.github.com/users/tyagolp`);
+    //const { getLoginSuccess } = this.props;
+    //getLoginSuccess(data);
+  this.setState({message:`ok - ${result.data.login}`})
+
+} catch (error) {
+  this.setState({message:error.message})
+  console.tron.warn(error)
+}
   };
 
   /*Register = async () => {
@@ -47,7 +58,7 @@ class SignIn extends Component {
   };*/
 
   render() {
-    const { cpf, password } = this.state;
+    const { cpf, password, message } = this.state;
     const { error, loading } = this.props.login;
 
     return (
@@ -109,6 +120,8 @@ class SignIn extends Component {
             {error ? (
               <Text style={styles.label}>Usuario não encontrado!</Text>
             ) : null}
+
+            <Text style={styles.label}>https: {message}</Text>
           </View>
         </KeyboardAvoidingView>
       </Background>
