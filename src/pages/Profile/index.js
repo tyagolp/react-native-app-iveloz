@@ -50,6 +50,8 @@ class Profile extends Component {
       oldPassword: '',
       password: '',
       confirmPassword: '',
+      error:false,
+      errorMsg:''
     };
   }
 
@@ -66,6 +68,9 @@ class Profile extends Component {
   };
 
   handleCloseModal = () => {
+    this.setState({error:false,errorMsg:'' });
+  };
+  handleCloseModalLocal = () => {
     const { setUserErrorOk } = this.props;
     setUserErrorOk();
   };
@@ -86,27 +91,28 @@ class Profile extends Component {
         } else if (response.error) {
           console.tron.log('ImagePicker Error: ', response.error);
         } else if (response.customButton) {
-          console.tron.log(
-            'User tapped custom button: ',
-            response.customButton
-          );
+          console.tron.log('custom button: ', response.customButton);
         } else {
           console.tron.log('Response = ', response);
+          try {
+              const { setImageRequest } = this.props;
+              const { uri, fileName: name, type } = response;
+              setImageRequest({
+                uri,
+                name,
+                type,
+              });
 
-          const { setImageRequest } = this.props;
-          const { uri, fileName: name, type } = response;
-          setImageRequest({
-            uri,
-            name,
-            type,
-          });
+          } catch (error) {
+              this.setState({error:true,errorMsg:error.messagem });
+          }
         }
       }
     );
   };
 
   render() {
-    const { oldPassword, password, confirmPassword } = this.state;
+    const { oldPassword, password, confirmPassword, error, errorMsg } = this.state;
     const { context } = this.props;
     return (
       <Backgroud>
@@ -239,6 +245,23 @@ class Profile extends Component {
         >
           <IvlzModelView>
             <IvlzModelText>{context.errorMessage}</IvlzModelText>
+            <IvlzModelFooter>
+              <IvlzModelButton title="OK" onPress={this.handleCloseModal}>
+                <IvlzModelButtonText>Fechar</IvlzModelButtonText>
+              </IvlzModelButton>
+            </IvlzModelFooter>
+          </IvlzModelView>
+        </IvlzModel>
+
+
+        <IvlzModel
+          animationIn="slideInLeft"
+          animationOut="slideOutRight"
+          animationInTiming={500}
+          isVisible={error}
+        >
+          <IvlzModelView>
+            <IvlzModelText>{errorMsg}</IvlzModelText>
             <IvlzModelFooter>
               <IvlzModelButton title="OK" onPress={this.handleCloseModal}>
                 <IvlzModelButtonText>Fechar</IvlzModelButtonText>
