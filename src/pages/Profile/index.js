@@ -84,6 +84,10 @@ class Profile extends Component {
         chooseFromLibraryButtonTitle: 'Selecionar uma imagem',
         noData: true,
         mediaType: 'photo',
+        storageOptions: {
+          skipBackup: true,
+          path: 'images',
+        },
       },
       response => {
         if (response.didCancel) {
