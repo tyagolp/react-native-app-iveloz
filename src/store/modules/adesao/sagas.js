@@ -1,11 +1,11 @@
-import { all, call, put, takeLatest } from 'redux-saga/effects';
+import {all, call, put, takeLatest} from 'redux-saga/effects';
 import api from '../../../services/api';
 import * as Actions from './actions';
 import NavigateService from '../../../services/navigation';
-import { colors } from '../../../styles';
+import {colors} from '../../../styles';
 
-function* setAdesaoRequest({ payload }) {
-  const { cpf, email } = payload;
+function* setAdesaoRequest({payload}) {
+  const {cpf, email} = payload;
   try {
     yield call(api.post, `adesao/exist`, {
       cpf,
@@ -19,19 +19,15 @@ function* setAdesaoRequest({ payload }) {
   }
 }
 
-function* setImageRequest({ payload }) {
-  try {
-    const { uri, name, type, local } = payload;
-    const multPart = new FormData();
-    multPart.append('file', { uri, name, type });
-    const { data } = yield call(api.post, `files`, multPart);
-    yield put(Actions.setImageSuccess({ local, image: data }));
-  } catch (error) {
-    console.tron.warn(error.response);
-  }
+function* setImageRequest({payload}) {
+  const {uri, name, type, local} = payload;
+  const multPart = new FormData();
+  multPart.append('file', {uri, name, type});
+  const {data} = yield call(api.post, `files`, multPart);
+  yield put(Actions.setImageSuccess({local, image: data}));
 }
 
-function* setFinalRequest({ item }) {
+function* setFinalRequest({item}) {
   const {
     nome,
     dataNasc,
@@ -75,15 +71,15 @@ function* setFinalRequest({ item }) {
   }
 }
 
-function* getChartDataRequest({ payload }) {
-  const { month, year } = payload;
+function* getChartDataRequest({payload}) {
+  const {month, year} = payload;
   try {
-    const { data } = yield api.post('adesao/salesMonth', {
+    const {data} = yield api.post('adesao/salesMonth', {
       month,
       year,
     });
 
-    data.map(item => {
+    data.map((item) => {
       switch (item.key) {
         case 1:
           item.label = 'Espera';
@@ -102,11 +98,9 @@ function* getChartDataRequest({ payload }) {
       }
     });
 
-    yield put(Actions.getChartDataSuccess({ data, perido: { month, year } }));
+    yield put(Actions.getChartDataSuccess({data, perido: {month, year}}));
   } catch (error) {
-    yield put(
-      Actions.getChartDataError({ message: 'falha ao obter os dados' })
-    );
+    yield put(Actions.getChartDataError({message: 'falha ao obter os dados'}));
   }
 }
 

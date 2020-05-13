@@ -174,7 +174,6 @@ class Cadastro extends Component {
       if (cep.length === 9) {
         this.setState({ loadCep: true }, async () => {
           const cepFormat = cep.toString().replace('-', '');
-          try {
             const result = await api.get(`correio/${cepFormat}`);
             if (result.data)
               this.setState({
@@ -182,9 +181,6 @@ class Cadastro extends Component {
                 loadCep: false,
                 cepInvalid: false,
               });
-          } catch (error) {
-            console.tron.warn(error);
-          }
         });
       }
     });

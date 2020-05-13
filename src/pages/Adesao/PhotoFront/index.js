@@ -49,16 +49,9 @@ class Photo extends Component {
       },
       response => {
         if (response.didCancel) {
-          console.tron.log('User cancelled image picker');
         } else if (response.error) {
-          console.tron.log('ImagePicker Error: ', response.error);
         } else if (response.customButton) {
-          console.tron.log(
-            'User tapped custom button: ',
-            response.customButton
-          );
         } else {
-          console.tron.log('Response = ', response);
 
           const { setImageRequest } = this.props;
           const { uri, fileName: name, type } = response;

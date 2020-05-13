@@ -26,7 +26,6 @@ function* getLoginSuccess({login}) {
     yield put(ActionsUser.sendLogin(data));
     yield put(Actions.getLoginSuccess(data));
   } catch (error) {
-    console.tron.warn(error.response);
     yield put(Actions.getLoginError());
   }
 }
@@ -56,7 +55,6 @@ function* getLoginSuccessTest({login}) {
     yield put(ActionsUser.sendLogin(data));
     yield put(Actions.getLoginSuccess(data));
   } catch (error) {
-    console.tron.warn(error.response);
     yield put(Actions.getLoginError());
   }
 }

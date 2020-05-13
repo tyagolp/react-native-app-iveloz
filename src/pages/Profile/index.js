@@ -68,7 +68,7 @@ class Profile extends Component {
   };
 
   handleCloseModalLocal = () => {
-    this.setState({error:false,errorMsg:'' });
+    this.setState({ error:false, errorMsg:'' });
   };
   handleCloseModal = () => {
     const { setUserErrorOk } = this.props;
@@ -87,14 +87,9 @@ class Profile extends Component {
       },
       response => {
         if (response.didCancel) {
-          console.tron.log('User cancelled image picker');
         } else if (response.error) {
-          console.tron.log('ImagePicker Error: ', response.error);
         } else if (response.customButton) {
-          console.tron.log('custom button: ', response.customButton);
         } else {
-          console.tron.log('Response = ', response);
-          try {
               const { setImageRequest } = this.props;
               const { uri, fileName: name, type } = response;
               setImageRequest({
@@ -102,10 +97,6 @@ class Profile extends Component {
                 name,
                 type,
               });
-
-          } catch (error) {
-              this.setState({error:true,errorMsg:error.messagem });
-          }
         }
       }
     );

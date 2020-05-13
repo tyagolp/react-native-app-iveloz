@@ -1,4 +1,4 @@
-import { PermissionsAndroid } from 'react-native';
+import {PermissionsAndroid} from 'react-native';
 
 export async function requestCameraPermission() {
   try {
@@ -12,16 +12,12 @@ export async function requestCameraPermission() {
         buttonNeutral: 'Ask Me Later',
         buttonNegative: 'Cancel',
         buttonPositive: 'OK',
-      }
+      },
     );
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      console.tron.log('You can use the camera');
     } else {
-      console.tron.log('Camera permission denied');
     }
-  } catch (err) {
-    console.tron.warn(err);
-  }
+  } catch (err) {}
 }
 
 export async function requestLocationPermission() {
@@ -36,14 +32,10 @@ export async function requestLocationPermission() {
         buttonNeutral: 'Ask Me Later',
         buttonNegative: 'Cancel',
         buttonPositive: 'OK',
-      }
+      },
     );
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      console.tron.log('You can use the camera');
     } else {
-      console.tron.log('Camera permission denied');
     }
-  } catch (err) {
-    console.tron.warn(err);
-  }
+  } catch (err) {}
 }

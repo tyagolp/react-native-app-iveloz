@@ -63,7 +63,6 @@ class Assinatura extends Component {
           const { navigation } = this.props;
           navigation.navigate('TakeSignarute');
         } else {
-          console.tron.log('Response = ', response);
 
           const { setImageRequest } = this.props;
           const { uri, fileName: name, type } = response;
