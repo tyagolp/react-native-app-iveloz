@@ -67,15 +67,16 @@ class Profile extends Component {
     navigation.navigate('Main');
   };
 
-  handleCloseModal = () => {
-    this.setState({error:false,errorMsg:'' });
-  };
   handleCloseModalLocal = () => {
+    this.setState({ error:false, errorMsg:'' });
+  };
+  handleCloseModal = () => {
     const { setUserErrorOk } = this.props;
     setUserErrorOk();
   };
 
   handleTakePhoto = () => {
+          try {
     ImagePicker.showImagePicker(
       {
         title: 'Como deseja obter a imagem',
@@ -94,7 +95,6 @@ class Profile extends Component {
           console.tron.log('custom button: ', response.customButton);
         } else {
           console.tron.log('Response = ', response);
-          try {
               const { setImageRequest } = this.props;
               const { uri, fileName: name, type } = response;
               setImageRequest({
@@ -103,12 +103,12 @@ class Profile extends Component {
                 type,
               });
 
-          } catch (error) {
-              this.setState({error:true,errorMsg:error.messagem });
-          }
         }
       }
     );
+          } catch (error) {
+              this.setState({error:true,errorMsg:error.messagem });
+          }
   };
 
   render() {
@@ -263,7 +263,7 @@ class Profile extends Component {
           <IvlzModelView>
             <IvlzModelText>{errorMsg}</IvlzModelText>
             <IvlzModelFooter>
-              <IvlzModelButton title="OK" onPress={this.handleCloseModal}>
+              <IvlzModelButton title="OK" onPress={this.handleCloseModalLocal}>
                 <IvlzModelButtonText>Fechar</IvlzModelButtonText>
               </IvlzModelButton>
             </IvlzModelFooter>
