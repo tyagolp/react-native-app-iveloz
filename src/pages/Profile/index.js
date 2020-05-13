@@ -76,6 +76,7 @@ class Profile extends Component {
   };
 
   handleTakePhoto = () => {
+          try {
     ImagePicker.showImagePicker(
       {
         title: 'Como deseja obter a imagem',
@@ -94,6 +95,10 @@ class Profile extends Component {
         } else if (response.error) {
         } else if (response.customButton) {
         } else {
+<<<<<<< HEAD
+=======
+          console.tron.log('Response = ', response);
+>>>>>>> ffa44617b83f2d294dcd713526656ccb70bfd9de
               const { setImageRequest } = this.props;
               const { uri, fileName: name, type } = response;
               setImageRequest({
@@ -101,9 +106,16 @@ class Profile extends Component {
                 name,
                 type,
               });
+<<<<<<< HEAD
+=======
+
+>>>>>>> ffa44617b83f2d294dcd713526656ccb70bfd9de
         }
       }
     );
+          } catch (error) {
+              this.setState({error:true,errorMsg:error.messagem });
+          }
   };
 
   render() {
