@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import api from 'axios'
 import {
   View,
   Text,
@@ -26,8 +25,7 @@ class SignIn extends Component {
     super(props);
     this.state = {
       cpf: '',
-      password: '',
-      message:''
+      password: ''
     };
   }
 
@@ -37,28 +35,8 @@ class SignIn extends Component {
     getLoginRequest({ cpf, password });
   };
 
-  signInTest = async () => {
-try {
-
-    const { cpf, password } = this.state;
-    const result = await api.get(`https://api.github.com/users/tyagolp`);
-    //const { getLoginSuccess } = this.props;
-    //getLoginSuccess(data);
-  this.setState({message:`ok - ${result.data.login}`})
-
-} catch (error) {
-  this.setState({message:error.message})
-  console.tron.warn(error)
-}
-  };
-
-  /*Register = async () => {
-    const { navigation } = this.props;
-    navigation.navigate('Register');
-  };*/
-
   render() {
-    const { cpf, password, message } = this.state;
+    const { cpf, password } = this.state;
     const { error, loading } = this.props.login;
 
     return (
@@ -110,18 +88,9 @@ try {
               <Text style={styles.buttonText}>Entrar</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={this.signInTest} style={styles.button}>
-              {loading ? (
-                <ActivityIndicator color={colors.primary} size={18} />
-              ) : null}
-              <Text style={styles.buttonText}>Sem internet</Text>
-            </TouchableOpacity>
-
             {error ? (
               <Text style={styles.label}>Usuario não encontrado!</Text>
             ) : null}
-
-            <Text style={styles.label}>https: {message}</Text>
           </View>
         </KeyboardAvoidingView>
       </Background>
@@ -129,9 +98,7 @@ try {
   }
 }
 
-const mapStateToProps = state => ({
-  login: state.login,
-});
+const mapStateToProps = state => ({  login: state.login,});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(LoginActions, dispatch);
