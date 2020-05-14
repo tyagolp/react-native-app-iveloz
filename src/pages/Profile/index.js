@@ -67,10 +67,10 @@ class Profile extends Component {
     navigation.navigate('Main');
   };
 
-  handleCloseModal = () => {
+  handleCloseModalLocal = () => {
     this.setState({error:false,errorMsg:'' });
   };
-  handleCloseModalLocal = () => {
+  handleCloseModal = () => {
     const { setUserErrorOk } = this.props;
     setUserErrorOk();
   };
@@ -263,7 +263,7 @@ class Profile extends Component {
           <IvlzModelView>
             <IvlzModelText>{errorMsg}</IvlzModelText>
             <IvlzModelFooter>
-              <IvlzModelButton title="OK" onPress={this.handleCloseModal}>
+              <IvlzModelButton title="OK" onPress={this.handleCloseModalLocal}>
                 <IvlzModelButtonText>Fechar</IvlzModelButtonText>
               </IvlzModelButton>
             </IvlzModelFooter>
