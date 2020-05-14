@@ -6,11 +6,15 @@ import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import './config/ReactotronConfig';
 import CodePush from 'react-native-code-push';
 import OneSignal from 'react-native-onesignal';
+import {Client} from 'bugsnag-react-native';
 
 import App from './App';
 import {colors} from './styles';
 
 import store from './store';
+
+const bugsnag = new Client('c509386ff1087e603eba3ceda66efc21');
+bugsnag.notify(new Error('Test error'));
 
 const Index = () => {
   useEffect(() => {

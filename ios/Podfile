@@ -40,6 +40,9 @@ target 'iVeloz' do
 
   pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
 
+  pod 'RNFBApp', :path => '../node_modules/@react-native-firebase/app'
+
+
   target 'iVelozTests' do
     inherit! :search_paths
     # Pods for testing

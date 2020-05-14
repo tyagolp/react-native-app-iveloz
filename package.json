@@ -17,6 +17,7 @@
     "@unform/core": "^2.0.0",
     "@unform/mobile": "^2.0.0",
     "axios": "^0.19.2",
+    "bugsnag-react-native": "^2.23.7",
     "dateformat": "^3.0.3",
     "global": "^4.4.0",
     "immer": "^6.0.2",
