@@ -14,7 +14,7 @@ import {colors} from './styles';
 import store from './store';
 
 const bugsnag = new Client('c509386ff1087e603eba3ceda66efc21');
-bugsnag.notify(new Error('Test error'));
+// bugsnag.notify(new Error('Test error'));
 
 const Index = () => {
   useEffect(() => {
