@@ -6,7 +6,6 @@ import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import './config/ReactotronConfig';
 import CodePush from 'react-native-code-push';
 import OneSignal from 'react-native-onesignal';
-import {Client} from 'bugsnag-react-native';
 
 import {Client} from 'bugsnag-react-native';
 import App from './App';

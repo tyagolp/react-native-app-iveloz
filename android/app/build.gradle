@@ -163,14 +163,14 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
-        release {
+        /*release {
             if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
                 storeFile file(MYAPP_UPLOAD_STORE_FILE)
                 storePassword MYAPP_UPLOAD_STORE_PASSWORD
                 keyAlias MYAPP_UPLOAD_KEY_ALIAS
                 keyPassword MYAPP_UPLOAD_KEY_PASSWORD
             }
-        }
+        }*/
     }
     buildTypes {
         debug {
@@ -184,21 +184,13 @@ android {
             matchingFallbacks = ['debug', 'release']
         }
         release {
-            signingConfig signingConfigs.release
+            //signingConfig signingConfigs.release
 
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             buildConfigField "String", "CodePushDeploymentKey", '"qguxU3TSlei1Y29RK6tnkKRGJL-bDZCh33l6r"'
         }
     }
-
-    packagingOptions {
-        pickFirst "lib/armeabi-v7a/libc++_shared.so"
-        pickFirst "lib/arm64-v8a/libc++_shared.so"
-        pickFirst "lib/x86/libc++_shared.so"
-        pickFirst "lib/x86_64/libc++_shared.so"
-    }
-
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
@@ -216,7 +208,6 @@ android {
 }
 
 dependencies {
-    implementation project(':@react-native-firebase_app')
     implementation project(':react-native-code-push')
 
     implementation project(':react-native-onesignal')
