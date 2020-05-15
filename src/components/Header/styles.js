@@ -16,6 +16,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: metrics.basePadding,
   },
 
+  buttonPadding: {
+    padding: 10,
+  },
+
   title: {
     fontSize: 16,
     fontWeight: 'bold',

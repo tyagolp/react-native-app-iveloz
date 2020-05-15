@@ -39,7 +39,7 @@ class Header extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.containerItems}>
-          <TouchableOpacity onPress={this.handleMenu}>
+          <TouchableOpacity style={styles.buttonPadding}  onPress={this.handleMenu}>
             <Icon
               name="navicon"
               size={18}
@@ -49,7 +49,7 @@ class Header extends Component {
           <TouchableOpacity onPress={this.handleHome}>
             <Text style={dark ? styles.titleDark : styles.title}>{title}</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={this.signOut}>
+          <TouchableOpacity style={styles.buttonPadding} onPress={this.signOut}>
             <Icon
               name="power-off"
               size={18}

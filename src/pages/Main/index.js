@@ -22,6 +22,8 @@ import {
   HomeCardItemIcon,
   CardFooterContainer,
   CardFooterTitle,
+  CardFooterTitleButton,
+  CardFooterTitleButtonIcon,
   CardFooterTitleText,
   CardFooterEmptyTitle,
   CardChart,
@@ -35,13 +37,18 @@ import {
 import {general, colors} from '../../styles';
 
 const Main = ({navigation, user, adesao, totalAdesao, getChartDataRequest}) => {
-  /* useEffect(() => {
+  useEffect(() => {
     async function load() {
       const {month, year, chartPendent} = adesao;
       if (chartPendent === true) getChartDataRequest({month, year});
     }
     load();
-  }, [adesao, getChartDataRequest]); */
+  }, [adesao, getChartDataRequest]);
+
+  function handlerRefreshChart() {
+    const {month, year, chartPendent} = adesao;
+    if (chartPendent === true) getChartDataRequest({month, year});
+  }
 
   function handleNavigation(local) {
     navigation.navigate(local);
@@ -92,7 +99,7 @@ const Main = ({navigation, user, adesao, totalAdesao, getChartDataRequest}) => {
           <CardHeader>
             <CardHeaderTitle>
               <CardHeaderTitleText>Bem Vindo</CardHeaderTitleText>
-              <CardHeaderTitleName> {user.name}</CardHeaderTitleName>
+              <CardHeaderTitleName>{user.name}</CardHeaderTitleName>
             </CardHeaderTitle>
             <CardHeaderButtons>
               <HomeCardItem
@@ -120,6 +127,9 @@ const Main = ({navigation, user, adesao, totalAdesao, getChartDataRequest}) => {
           <CardFooterContainer style={[general.formStyles.sombra]}>
             <CardFooterTitle>
               <CardFooterTitleText>Venda do Mes</CardFooterTitleText>
+              <CardFooterTitleButton onPress={() => handlerRefreshChart()}>
+                <CardFooterTitleButtonIcon />
+              </CardFooterTitleButton>
             </CardFooterTitle>
             {!adesao.chartPendent && (
               <>

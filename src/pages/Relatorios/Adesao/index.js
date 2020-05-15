@@ -73,12 +73,12 @@ export default class RelatorioAdesao extends Component {
     const { loading, error } = this.state;
     return (
       <Background>
-        <Container style={{ flex: 1 }}>
+        <Container >
           <Title>
             <TitleIcon name="th-list" />
             <TitleText>Resumo de Atividades</TitleText>
           </Title>
-          <View>
+          <View style={styles.containerView}>
             {error ? (
               <Text>Não foi possivel se conectar com o servidor</Text>
             ) : loading ? (

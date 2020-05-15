@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { createAppContainer } from 'react-navigation';
+import {createAppContainer} from 'react-navigation';
 import {
   createStackNavigator,
   StackViewTransitionConfigs,
 } from 'react-navigation-stack';
 // import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { createDrawerNavigator } from 'react-navigation-drawer';
+import {createDrawerNavigator} from 'react-navigation-drawer';
 
 import CustomizeDrawer from './components/CustomizeDrawer';
 
@@ -59,9 +59,9 @@ const stackAdesao = createStackNavigator(
   {
     headerMode: 'screen',
     defaultNavigationOptions: {
-      header: () => <Header title="" />,
+      header: () => <Header title="iVeloz" />,
     },
-  }
+  },
 );
 
 const drawer = createDrawerNavigator(
@@ -70,7 +70,7 @@ const drawer = createDrawerNavigator(
   },
   {
     contentComponent: CustomizeDrawer,
-  }
+  },
 );
 
 export default (isSigned = false) =>
@@ -86,8 +86,8 @@ export default (isSigned = false) =>
           headerShown: false,
         },
         initialRouteName: isSigned ? 'Home' : 'Login',
-      }
-    )
+      },
+    ),
     /* ,
      */
   );

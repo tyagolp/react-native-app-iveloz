@@ -13,9 +13,10 @@ import {colors} from './styles';
 
 import store from './store';
 
-const bugsnag = new Client('c509386ff1087e603eba3ceda66efc21');
-// bugsnag.notify(new Error('Test error'));
-
+if (__DEV__) {
+  const bugsnag = new Client('c509386ff1087e603eba3ceda66efc21');
+  // bugsnag.notify(new Error('Test error'));
+}
 const Index = () => {
   useEffect(() => {
     OneSignal.init('6318138f-e533-489c-9ad0-3d84b5a2c186');
