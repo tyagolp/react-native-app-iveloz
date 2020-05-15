@@ -5,11 +5,10 @@ import NavigateService from '../../../services/navigation';
 import {colors} from '../../../styles';
 
 function* setAdesaoRequest({payload}) {
-  const {cpf, email} = payload;
+  const {cpf} = payload;
   try {
     yield call(api.post, `adesao/exist`, {
       cpf,
-      email,
     });
     yield put(Actions.setAdesaoSuccess(payload));
     NavigateService.navigate('Plano');

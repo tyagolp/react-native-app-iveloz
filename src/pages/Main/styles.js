@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
-import { PieChart } from 'react-native-svg-charts';
+import {PieChart} from 'react-native-svg-charts';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { colors } from '../../styles';
+import {colors} from '../../styles';
 
 export const Container = styled.View`
   flex: 1;
@@ -32,6 +32,13 @@ export const CardHeaderTitleText = styled.Text`
   padding: 0 5px 0;
   color: ${colors.white};
 `;
+export const CardHeaderTitleButton = styled.TouchableOpacity``;
+export const CardHeaderTitleButtonText = styled.Text`
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0 5px 0;
+  color: ${colors.white};
+`;
 export const CardHeaderTitleName = styled.Text`
   font-size: 16px;
   font-weight: bold;
@@ -53,14 +60,27 @@ export const CardFooterContainer = styled.View`
 `;
 export const CardFooterTitle = styled.View`
   flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   padding: 10px 0;
 `;
 export const CardFooterTitleText = styled.Text`
   font-weight: bold;
   font-size: 16px;
   color: ${colors.primary};
-  text-align: center;
 `;
+export const CardFooterTitleButton = styled.TouchableOpacity`
+  background-color: ${colors.lighter};
+  margin-left: 10px;
+  border-radius: 20px;
+  padding: 5px;
+`;
+export const CardFooterTitleButtonIcon = styled(Icon).attrs({
+  name: 'refresh',
+  color: colors.primary,
+  size: 16,
+})``;
 export const CardFooterEmptyTitle = styled.Text`
   flex: 1;
   padding: 10px 0;
@@ -89,7 +109,7 @@ export const LegendList = styled.View`
 export const LegendItem = styled.TouchableOpacity`
   margin: 10px 0px 10px 5px;
   padding: 4px 3px;
-  background-color: ${props => props.color};
+  background-color: ${(props) => props.color};
   border-radius: 3px;
   flex-direction: row;
 `;

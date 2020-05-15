@@ -119,13 +119,13 @@ class Cadastro extends Component {
       });
       return;
     }
-    if (emailInvalid) {
+    /*if (emailInvalid) {
       this.setState({
         validErrorShow: true,
         validErrorMessage: 'Preencha o email corretamente!',
       });
       return;
-    }
+    }*/
     if (whatsappInvalid) {
       this.setState({
         validErrorShow: true,
@@ -350,7 +350,7 @@ class Cadastro extends Component {
                 {email.length > 10 ? <FormIcon name="check" /> : <FormIcon />}
               </Form>
 
-              <FormLabel>E-mail*</FormLabel>
+              <FormLabel>E-mail</FormLabel>
               <Form>
                 <FormInputText
                   value={email}

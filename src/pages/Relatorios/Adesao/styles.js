@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { colors, general, metrics } from '../../../styles';
+import {StyleSheet} from 'react-native';
+import {colors, general, metrics} from '../../../styles';
 
 const styles = StyleSheet.create({
   ...general.formStyles,
@@ -12,6 +12,8 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     padding: 0,
   },
+
+  containerView: {},
 
   title: {
     justifyContent: 'center',
