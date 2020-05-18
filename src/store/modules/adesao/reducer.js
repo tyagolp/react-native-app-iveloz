@@ -51,6 +51,13 @@ export default function adesao(state = INITIAL_STATE, action) {
         if (payload.local === 1) draft.item.photoBack = payload.image;
         else if (payload.local === 2) draft.item.photoFront = payload.image;
         else if (payload.local === 3) draft.item.signature = payload.image;
+        draft.error = false;
+      });
+    case '@adesao/SET_IMAGE_ERROR':
+      return produce(state, (draft) => {
+        draft.loading = false;
+        draft.error = true;
+        draft.errorMessage = action.payload.data.description;
       });
 
     case '@adesao/SET_FOTO_BACK_REQUEST':

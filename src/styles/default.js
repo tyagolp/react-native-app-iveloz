@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Modal from 'react-native-modal';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { colors, metrics } from '.';
+import {colors, metrics} from '.';
 
 export const KeyboardASV = styled(KeyboardAwareScrollView)``;
 
@@ -63,7 +63,7 @@ export const Page = styled.View`
 export const PageIndex = styled.View`
   flex: 1;
   border: 2px solid
-    ${props => (props.color ? colors.primary : colors.transparent)};
+    ${(props) => (props.color ? colors.primary : colors.transparent)};
 `;
 
 export const PageNumber = styled.Text`

@@ -13,6 +13,12 @@ import {
   TitleText,
   TitleIcon,
   Footer,
+  IvlzModel,
+  IvlzModelFooter,
+  IvlzModelView,
+  IvlzModelText,
+  IvlzModelButton,
+  IvlzModelButtonText,
   FormButtonSubmit,
   FormButtonSubmitIcon,
   FormButtonSubmitText,
@@ -67,6 +73,11 @@ class PhotoBack extends Component {
       }
     );
   };
+  
+  handleCloseModal = () => {
+    const { setAdesaoErrorOk } = this.props;
+    setAdesaoErrorOk();
+  };
 
   render() {
     const { adesao } = this.props;
@@ -109,6 +120,21 @@ class PhotoBack extends Component {
             ) : null}
           </Footer>
         </Container>
+        <IvlzModel
+          animationIn="slideInLeft"
+          animationOut="slideOutRight"
+          animationInTiming={500}
+          isVisible={adesao.error}
+        >
+          <IvlzModelView>
+            <IvlzModelText>{adesao.errorMessage}</IvlzModelText>
+            <IvlzModelFooter>
+              <IvlzModelButton title="OK" onPress={this.handleCloseModal}>
+                <IvlzModelButtonText>Fechar</IvlzModelButtonText>
+              </IvlzModelButton>
+            </IvlzModelFooter>
+          </IvlzModelView>
+        </IvlzModel>
       </Backgroud>
     );
   }

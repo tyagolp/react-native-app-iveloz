@@ -47,6 +47,12 @@ export function setImageSuccess(payload) {
     payload,
   };
 }
+export function setImageError(payload) {
+  return {
+    type: '@adesao/SET_IMAGE_ERROR',
+    payload,
+  };
+}
 
 export function setSignatureSuccess(path) {
   return {

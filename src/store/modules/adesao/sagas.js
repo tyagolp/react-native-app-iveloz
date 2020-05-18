@@ -14,16 +14,31 @@ function* setAdesaoRequest({payload}) {
     NavigateService.navigate('Plano');
   } catch (error) {
     if (error.response) yield put(Actions.setAdesaoError(error.response));
-    // else yield put(ToastActionsCreators.displayError(error.message));
+    else
+      yield put(
+        Actions.setAdesaoError({
+          data: {description: 'Sem conexão com a internet!'},
+        }),
+      );
   }
 }
 
 function* setImageRequest({payload}) {
-  const {uri, name, type, local} = payload;
-  const multPart = new FormData();
-  multPart.append('file', {uri, name, type});
-  const {data} = yield call(api.post, `files`, multPart);
-  yield put(Actions.setImageSuccess({local, image: data}));
+  try {
+    const {uri, name, type, local} = payload;
+    const multPart = new FormData();
+    multPart.append('file', {uri, name, type});
+    const {data} = yield call(api.post, `files`, multPart);
+    yield put(Actions.setImageSuccess({local, image: data}));
+  } catch (error) {    
+    if (error.response) yield put(Actions.setImageError(error.response));
+    else
+      yield put(
+        Actions.setImageError({
+          data: {description: 'Sem conexão com a internet!'},
+        }),
+      );
+  }
 }
 
 function* setFinalRequest({item}) {
@@ -99,7 +114,7 @@ function* getChartDataRequest({payload}) {
 
     yield put(Actions.getChartDataSuccess({data, perido: {month, year}}));
   } catch (error) {
-    yield put(Actions.getChartDataError({message: 'falha ao obter os dados'}));
+    yield put(Actions.getChartDataErro({message: 'falha ao obter os dados'}));
   }
 }
 

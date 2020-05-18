@@ -70,7 +70,7 @@ class Plano extends Component {
     const { loading } = this.state;
     return (
       <Backgroud>
-        <Container>
+        <Container style={{flex:1}}>
           <Page>
             <PageIndex color />
             <PageIndex color />
