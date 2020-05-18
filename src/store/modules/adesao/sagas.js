@@ -81,7 +81,14 @@ function* setFinalRequest({item}) {
     yield put(Actions.setFinalSuccess());
     NavigateService.navigate('Final');
   } catch (error) {
+    if(error.response)
     yield put(Actions.setFinalError(error.response));
+    else
+      yield put(
+        Actions.setImageError({
+          data: {description: 'Sem conexão com a internet!'},
+        }),
+      );
   }
 }
 
