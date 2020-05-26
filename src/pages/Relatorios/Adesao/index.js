@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { View, ActivityIndicator, FlatList, Text } from 'react-native';
+import dateFormat from 'dateformat';
 
 import Background from '../../../components/Background';
 import AdesaoItem from '../../../components/AdesaoItem';
@@ -10,6 +11,13 @@ import {
   Title,
   TitleText,
   TitleIcon,
+  IvlzModel,
+  IvlzModelTitle,
+  IvlzModelView,
+  IvlzModelText,
+  IvlzModelFooter,
+  IvlzModelButton,
+  IvlzModelButtonText
 } from '../../../styles/default';
 
 import api from '../../../services/api';
@@ -24,6 +32,12 @@ export default class RelatorioAdesao extends Component {
       loading: true,
       error: null,
       refreshing: false,
+      status:0,
+      month: parseInt(dateFormat('mm')),
+      year: parseInt(dateFormat('yyyy')),
+      modalShow:false,
+      modalAdesao:'',
+      modalMotivo:''
     };
   }
 
@@ -37,8 +51,9 @@ export default class RelatorioAdesao extends Component {
         error: null,
       },
       async () => {
+        const { status, month, year } = this.state;
         try {
-          const { data } = await api.get('adesao');
+          const { data } = await api.get('adesao', {status, month, year});
           this.setState({
             data,
             loading: false,
@@ -53,7 +68,7 @@ export default class RelatorioAdesao extends Component {
     );
   };
 
-  renderListItem = ({ item }) => <AdesaoItem item={item} />;
+  renderListItem = ({ item }) => <AdesaoItem item={item} click={this.handleClickAdesao} />;
 
   renderList = () => {
     const { data, refreshing } = this.state;
@@ -61,7 +76,7 @@ export default class RelatorioAdesao extends Component {
     return (
       <FlatList
         data={data}
-        keyExtractor={item => String(item.id)}
+        keyExtractor={item => String(item.adesaoid)}
         renderItem={this.renderListItem}
         onRefresh={this.loadRepositories}
         refreshing={refreshing}
@@ -69,8 +84,22 @@ export default class RelatorioAdesao extends Component {
     );
   };
 
+  handleClickAdesao = (item) =>{
+    console.tron.log(item)
+
+    this.setState({
+      modalShow: true,
+      modalAdesao: `${item.adesaoid} - ${item.cliente}` ,
+      modalMotivo: item.motivo
+    });
+  }
+
+  handleCloseModal = () =>{
+    this.setState({modalShow:false, modalAdesao:'', modalMotivo:'' });
+  }
+
   render() {
-    const { loading, error } = this.state;
+    const { loading, error, modalShow, modalAdesao, modalMotivo } = this.state;
     return (
       <Background>
         <Container >
@@ -88,7 +117,24 @@ export default class RelatorioAdesao extends Component {
             )}
           </View>
         </Container>
+        <IvlzModel
+          animationIn="slideInLeft"
+          animationOut="slideOutRight"
+          animationInTiming={500}
+          isVisible={modalShow}
+        >
+          <IvlzModelView>
+            <IvlzModelTitle>{modalAdesao}</IvlzModelTitle>
+            <IvlzModelText>Motivo: {modalMotivo}</IvlzModelText>
+            <IvlzModelFooter>
+              <IvlzModelButton title="OK" onPress={this.handleCloseModal}>
+                <IvlzModelButtonText>Fechar</IvlzModelButtonText>
+              </IvlzModelButton>
+            </IvlzModelFooter>
+          </IvlzModelView>
+        </IvlzModel>
       </Background>
     );
   }
 }
+

@@ -30,7 +30,7 @@ function* setImageRequest({payload}) {
     multPart.append('file', {uri, name, type});
     const {data} = yield call(api.post, `files`, multPart);
     yield put(Actions.setImageSuccess({local, image: data}));
-  } catch (error) {    
+  } catch (error) {
     if (error.response) yield put(Actions.setImageError(error.response));
     else
       yield put(
@@ -81,8 +81,7 @@ function* setFinalRequest({item}) {
     yield put(Actions.setFinalSuccess());
     NavigateService.navigate('Final');
   } catch (error) {
-    if(error.response)
-    yield put(Actions.setFinalError(error.response));
+    if (error.response) yield put(Actions.setFinalError(error.response));
     else
       yield put(
         Actions.setImageError({
