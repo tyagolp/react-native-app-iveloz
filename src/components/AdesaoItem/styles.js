@@ -6,9 +6,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.white,
     paddingVertical: metrics.basePadding / 2,
-    // marginHorizontal: metrics.baseMargin / 2,
-    // marginVertical: metrics.baseMargin / 2,
-    // borderRadius: metrics.baseRadius * 2,
+    margin: 0,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
