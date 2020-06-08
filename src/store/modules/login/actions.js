@@ -15,12 +15,6 @@ export function getLoginRequest(login) {
     login,
   };
 }
-export function getLoginTestRequest(login) {
-  return {
-    type: '@login/GET_REQUEST_TEST',
-    login,
-  };
-}
 export function getLoginSuccess(login) {
   return {
     type: '@login/GET_SUCCESS',
