@@ -11,7 +11,7 @@ function* init() {
     api.defaults.headers.Authorization = `Bearer ${data.token}`;
 
     try {
-      yield call(api.post, `testToken`, {cpf: data.user.cpf});
+      yield call(api.post, `sessionsVerify`, {cpf: data.user.cpf});
       yield put(ActionsUser.sendLogin(data));
       yield put(Actions.getLoginSuccess(data));
     } catch (error) {
