@@ -9,14 +9,12 @@ function* init() {
   if (item) {
     const data = JSON.parse(item);
     api.defaults.headers.Authorization = `Bearer ${data.token}`;
-    console.tron.log(data);
 
     try {
       yield call(api.post, `testToken`, {cpf: data.user.cpf});
       yield put(ActionsUser.sendLogin(data));
       yield put(Actions.getLoginSuccess(data));
     } catch (error) {
-      console.tron.warn(error);
       yield call([AsyncStorage, 'clear']);
       yield put(Actions.getLoginError());
     }
@@ -33,7 +31,6 @@ function* getLoginSuccess({login}) {
     yield put(ActionsUser.sendLogin(data));
     yield put(Actions.getLoginSuccess(data));
   } catch (error) {
-    console.tron.warn(error);
     yield put(Actions.getLoginError());
   }
 }
