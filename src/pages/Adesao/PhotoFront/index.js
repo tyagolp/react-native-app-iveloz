@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
+import ImageResizer from 'react-native-image-resizer';
 
 import {
   Container,
@@ -58,20 +59,25 @@ class Photo extends Component {
         } else if (response.error) {
         } else if (response.customButton) {
         } else {
-
           const { setImageRequest } = this.props;
           const { uri, fileName: name, type } = response;
-          setImageRequest({
-            uri,
-            name,
-            type,
-            local: 2,
+
+          ImageResizer.createResizedImage(uri, 600, 800, 'JPEG', 100).then(resizedImageUri => {
+            setImageRequest({
+              uri: resizedImageUri.uri,
+              name,
+              type,
+              local: 2,
+            });
+          }).catch((err) => {
+            const { setImageError } = this.props;
+            setImageError({data: {description:'Falha ao reduzir o tamanho do arquivo!'}})
           });
         }
       }
     );
   };
-  
+
   handleCloseModal = () => {
     const { setAdesaoErrorOk } = this.props;
     setAdesaoErrorOk();

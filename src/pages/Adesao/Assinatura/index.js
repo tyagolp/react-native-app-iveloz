@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import ImagePicker from 'react-native-image-picker';
+import ImageResizer from 'react-native-image-resizer';
 import {
   Container,
   Page,
@@ -63,15 +64,22 @@ class Assinatura extends Component {
           const { navigation } = this.props;
           navigation.navigate('TakeSignarute');
         } else {
-
           const { setImageRequest } = this.props;
           const { uri, fileName: name, type } = response;
-          setImageRequest({
-            uri,
-            name,
-            type,
-            local: 3,
+
+          ImageResizer.createResizedImage(uri, 600, 800, 'JPEG', 100).then(resizedImageUri => {
+            setImageRequest({
+              uri: resizedImageUri.uri,
+              name,
+              type,
+              local: 3,
+            });
+          }).catch((err) => {
+            const { setImageError } = this.props;
+            setImageError({data: {description:'Falha ao reduzir o tamanho do arquivo!'}})
           });
+
+
         }
       }
     );

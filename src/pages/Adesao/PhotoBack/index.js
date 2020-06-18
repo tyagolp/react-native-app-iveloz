@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import ImagePicker from 'react-native-image-picker';
+import ImageResizer from 'react-native-image-resizer';
 import {
   Container,
   Page,
@@ -63,17 +64,25 @@ class PhotoBack extends Component {
 
           const { setImageRequest } = this.props;
           const { uri, fileName: name, type } = response;
-          setImageRequest({
-            uri,
-            name,
-            type,
-            local: 1,
+
+          ImageResizer.createResizedImage(uri, 600, 800, 'JPEG', 100).then(resizedImageUri => {
+            setImageRequest({
+              uri: resizedImageUri.uri,
+              name,
+              type,
+              local: 1,
+            });
+          }).catch((err) => {
+            const { setImageError } = this.props;
+            setImageError({data: {description:'Falha ao reduzir o tamanho do arquivo!'}})
+            // Oops, something went wrong. Check that the filename is correct and
+            // inspect err to get more details.
           });
         }
       }
     );
   };
-  
+
   handleCloseModal = () => {
     const { setAdesaoErrorOk } = this.props;
     setAdesaoErrorOk();
