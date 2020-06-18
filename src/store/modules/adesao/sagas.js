@@ -59,7 +59,6 @@ function* setFinalRequest({item}) {
     photoFront,
     signature,
   } = item;
-
   try {
     yield call(api.post, `adesao`, {
       cliente: nome,
